@@ -1,0 +1,16 @@
+
+
+.banner{
+    background-image: url("../banner.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 25rem;
+
+
+}
+
+h1{
+    color: white;
+    
+   
+}
