@@ -4,9 +4,9 @@ main()
 async function main() {
     const cameras = await getCameras()
     console.log(cameras)
-    for (camera of cameras) {
-        displayCamera(camera)
-    }
+    cameras.forEach((camera) => {
+        displayCamera(camera);
+    });
 }
 
 
@@ -26,6 +26,7 @@ function getCameras() {
 
         .catch(function (error) {
             alert(error)
+            return []
         })
 }
 
@@ -33,8 +34,8 @@ function getCameras() {
 
 async function displayCamera(camera) {
 
-    const cameras = await getCameras()
-    
+    //const cameras = await getCameras()
+
     //Lien avec la page HTML
 
     const listCamera = document.getElementById('list-camera');
@@ -76,10 +77,5 @@ async function displayCamera(camera) {
     cameraDescription.appendChild(cameraPrice);
     cameraDescription.appendChild(cameraAction)
 }
-
-//Transmission de paramètres via url
-//Récupérer ces paramètres en Javascript
-//Diviser par 100 ton prix
-//Regarder la manipulation de chaines de caractère (concaténer)
 
 

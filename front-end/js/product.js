@@ -1,28 +1,29 @@
+//axios
+
 main ()
 
 async function main() {
-    const cameras = await getCameras()
-    console.log(cameras)
-    detailCameraProd (detailProduit)
+    detailCameraProd ()
     
 }
 
 //Lien avec l'API
 
-function getCameras() {
+function getCamera(id) {
 
-    return fetch("http://localhost:3000/api/cameras")
+    return fetch(`http://localhost:3000/api/cameras/${id}`)
 
         .then(function (httpBodyResponse) {
             return httpBodyResponse.json()
         })
 
-        .then(function (cameras) {
-            return cameras
+        .then(function (camera) {
+            return camera
         })
 
         .catch(function (error) {
             alert(error)
+            return undefined;
         })
 }
 
@@ -31,21 +32,19 @@ async function detailCameraProd () {
     const queryString = window.location.search;
     console.log (queryString);
 
-    const rulParams = new URLSearchParams (queryString);
+    const urlParams = new URLSearchParams (queryString);
     console.log (urlParams);
 
     const id = urlParams.get('id');
     console.log(id);
 
-    const detailProduit = await Ajax ('cameras/' + id , 'GET');
-    console.log(detailProduct)
+    //console.log(detailProduct)
 
 
     //Element section product html
 
-    const detailCameras = await getCameras();
-
-
+    const detailCamera = await getCamera(id);
+    console.log(detailCamera)
 
     const detailProduct = document.getElementById("product");
 
@@ -57,7 +56,7 @@ async function detailCameraProd () {
     let detailName = document.createElement("h2");
     let detailPrice = document.createElement("p");
     let detailText = document.createElement("p");
-    let detailOption = document.createElement("");
+    
 
     detailContent.setAttribute("class", "detail_content");
     detailPicturebox.setAttribute("class", "detail_picturebox");
@@ -67,8 +66,8 @@ async function detailCameraProd () {
     detailPrice.setAttribute("class", "detail_price");
     detailText.setAttribute("class", "detail_text");
 
-    detailPicture.src(detailcamera.imageUrl)
-    detailName.textContent(detailcamera.name)
-    detailPrice.textContent(detailPrice / 100 + " euros")
+    detailPicture.src(camera.imageUrl)
+    detailName.textContent(camera.name)
+    detailPrice.textContent(camera.price / 100 + " euros")
 
 }
